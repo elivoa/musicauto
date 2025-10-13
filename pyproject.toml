@@ -1,0 +1,17 @@
+[project]
+name = "musicauto"
+version = "0.1.0"
+description = "用CUE文件切开WAV/FLAC整轨文件"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "chardet>=5.2.0",
+]
+
+[tool.uv.workspace]
+members = [
+]
+
+[tool.pylint.format]
+max-line-length = 120
+indent-string = "    "
