@@ -1,23 +1,24 @@
-import codecs
+''' 将CUE文件和WAV文件分离 '''
 import os
-import re
-import subprocess
-import chardet
 import sys
+import codecs
+import chardet
 
 
 def encodepath(path):
-    path = path.replace(' ', '\ ')
-    path = path.replace('[', '\[')
-    path = path.replace(']', '\]')
-    path = path.replace('(', '\(')
-    path = path.replace(')', '\)')
-    path = path.replace('&', '\&')
+    ''' 将路径中的特殊字符转换为转义字符 '''
+    path = path.replace(' ', r'\ ')
+    path = path.replace('[', r'\[')
+    path = path.replace(']', r'\]')
+    path = path.replace('(', r'\(')
+    path = path.replace(')', r'\)')
+    path = path.replace('&', r'\&')
     return path
     # return re.sub(r'([\[\] ])', r'\\\1', path)
 
 
 def convert_to_utf8(file_path):
+    ''' 将CUE文件转换为UTF-8格式; return newcue'''
     # 检测文件编码
 
     newcue = file_path + '.utf8.cue'
@@ -40,6 +41,7 @@ def convert_to_utf8(file_path):
 
 
 def detect_and_convert_cue_encoding(folder):
+    ''' 检测并转换CUE文件的编码 '''
     for root, dirs, files in os.walk(folder):
         for file in files:
             basename, extension = os.path.splitext(file)
@@ -49,6 +51,7 @@ def detect_and_convert_cue_encoding(folder):
 
 
 def main():
+    ''' 主函数 '''
     if len(sys.argv) < 2:
         print('Usage: python auto_split_cue.py <folder>')
         return
