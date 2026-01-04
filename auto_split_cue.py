@@ -103,6 +103,7 @@ def auto_split_cue(folder):
             cmd = f'shntool split -t "%n %t" -o flac -f {cuepath} -d {rrr} {targetpath}'
 
             print("  Converting...")
+            print("  Command:", cmd)
 
             with subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE) as process:
                 while True:
@@ -112,7 +113,6 @@ def auto_split_cue(folder):
                     if output:
                         print(f"  Identify CUE :{output.strip().decode()}")
 
-            print("  Command:", cmd)
             print("  Convert Success!")
 
 
